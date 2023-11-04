@@ -3,6 +3,7 @@ import {Item, Position} from '../types';
 import './App.css';
 import cutleryImg from '../assets/fork.png';
 import drinkImg from '../assets/cup.png';
+import Order from '../components/Order';
 
 
 
@@ -52,7 +53,7 @@ function App() {
     if(detail !== undefined) {
       return detail.image;
     } else {
-      return undefined;
+      return ' ';
     }
   };
 
@@ -63,23 +64,13 @@ function App() {
           <h1 className="fs-3">Items:</h1>
           <div className="mt-2 d-flex flex-column">
             {items.map(item => (
-              <button className="btn btn-white" onClick={() => onChange(item.id,1)}>
-                <div key={item.id} className="card p-2">
-                  <div className="card-body">
-                    <div className="row align-items-center">
-                      <div className="col-auto">
-                        <img src={imgOrder(item.id)} width='50px' height='50px' alt="Order image" />
-                      </div>
-                      <div className="col-auto flex-grow-1">
-                        {item.name}
-                      </div>
-                      <div className="col-auto">
-                        {item.price} KGS
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </button>
+              <Order   id = {item.id}
+                       name = {item.name}
+                       price = {item.price}
+                       image = {item.image}
+                       onChange = {onChange}
+                       imgOrder = {imgOrder}
+              ></Order>
             ))}
           </div>
         </div>
@@ -120,3 +111,21 @@ function App() {
 }
 
 export default App;
+
+// <button className="btn btn-white" onClick={() => onChange(item.id,1)}>
+//   <div key={item.id} className="card p-2">
+//     <div className="card-body">
+//       <div className="row align-items-center">
+//         <div className="col-auto">
+//           <img src={imgOrder(item.id)} width='50px' height='50px' alt="Order image" />
+//         </div>
+//         <div className="col-auto flex-grow-1">
+//           {item.name}
+//         </div>
+//         <div className="col-auto">
+//           {item.price} KGS
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </button>
