@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {Item, Position} from '../types';
-import './App.css';
+import Order from '../components/Order';
 import cutleryImg from '../assets/fork.png';
 import drinkImg from '../assets/cup.png';
-import Order from '../components/Order';
+import './App.css';
 
 
 

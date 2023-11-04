@@ -11,7 +11,6 @@ interface Props {
 
 const Order: React.FC<Props> = (props) => {
   return (
-    <div>
       <button className="btn btn-white" onClick={() => props.onChange(props.id,1)}>
         <div key={props.id} className="card p-2">
           <div className="card-body">
@@ -29,7 +28,6 @@ const Order: React.FC<Props> = (props) => {
           </div>
         </div>
       </button>
-    </div>
   );
 };
 
