@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import './App.css';
-import {Item, Position} from './types';
+import {Item, Position} from '../types';
 
 function App() {
   const items: Item[] = [
