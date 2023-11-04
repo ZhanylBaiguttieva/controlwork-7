@@ -71,7 +71,7 @@ function App() {
                        image = {item.image}
                        onChange = {onChange}
                        imgOrder = {imgOrder}
-              ></Order>
+              />
             ))}
           </div>
         </div>
