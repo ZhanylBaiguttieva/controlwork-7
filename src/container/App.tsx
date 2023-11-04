@@ -1,23 +1,28 @@
 import {useState} from 'react';
-import './App.css';
 import {Item, Position} from '../types';
+import './App.css';
+import cutleryImg from '../assets/fork.png';
+import drinkImg from '../assets/cup.png';
+
+
 
 function App() {
   const items: Item[] = [
-    {id:1, name:'Hamburger', price:80},
-    {id:2, name:'Cheeseburger', price: 90},
-    {id:3, name: 'Fries', price: 45},
-    {id:4, name:'Coffee', price: 70},
-    {id:5, name:'Tea', price: 50},
-    {id:6, name:'Cola', price: 40},
+    {id:1, name:'Hamburger', price:80, image: cutleryImg},
+    {id:2, name:'Cheeseburger', price: 90, image: cutleryImg},
+    {id:3, name: 'Fries', price: 45, image: cutleryImg},
+    {id:4, name:'Coffee', price: 70, image: drinkImg},
+    {id:5, name:'Tea', price: 50, image: drinkImg},
+    {id:6, name:'Cola', price: 40, image: drinkImg},
   ];
+
   const [positions, setPositions] = useState<Position[]>([
-    {item:{id:1, name:'Hamburger', price:80}, count: 0},
-    {item:{id:2, name:'Cheeseburger', price: 90}, count: 0},
-    {item:{id:3, name: 'Fries', price: 45}, count: 0},
-    {item:{id:4, name:'Coffee', price: 70}, count: 0},
-    {item:{id:5, name:'Tea', price: 50}, count: 0},
-    {item:{id:6, name:'Cola', price: 40}, count: 0},
+    {item:{id:1, name:'Hamburger', price:80, image: cutleryImg}, count: 0},
+    {item:{id:2, name:'Cheeseburger', price: 90, image: cutleryImg}, count: 0},
+    {item:{id:3, name: 'Fries', price: 45, image: cutleryImg}, count: 0},
+    {item:{id:4, name:'Coffee', price: 70, image: drinkImg}, count: 0},
+    {item:{id:5, name:'Tea', price: 50, image: drinkImg}, count: 0},
+    {item:{id:6, name:'Cola', price: 40, image: drinkImg}, count: 0},
   ]);
   const [totalPrice, setTotalPrice] = useState(
     {price: 0}
@@ -42,6 +47,15 @@ function App() {
     });
   };
 
+  const imgOrder = (id: number)=> {
+    const detail = items.find(item => item.id === id);
+    if(detail !== undefined) {
+      return detail.image;
+    } else {
+      return undefined;
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -53,8 +67,9 @@ function App() {
                 <div key={item.id} className="card p-2">
                   <div className="card-body">
                     <div className="row align-items-center">
-                      {/*<div className="col-auto">*/}
-                      {/*</div>*/}
+                      <div className="col-auto">
+                        <img src={imgOrder(item.id)} width='50px' height='50px' alt="Order image" />
+                      </div>
                       <div className="col-auto flex-grow-1">
                         {item.name}
                       </div>
@@ -70,7 +85,7 @@ function App() {
         </div>
         <div className="container mt-5">
           <h1 className="mb-5 fs-3"> Order details: </h1>
-          <div className="mt-2 d-flex flex-column">
+          <div className="mt-2 d-flex flex-column gap-2">
             {positions.filter(position => position.count !== 0).map(position => (
               <div key={position.item.id} className="card p-2">
                 <div className="card-body">
