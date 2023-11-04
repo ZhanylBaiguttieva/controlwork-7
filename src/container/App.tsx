@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import {Item, Position} from '../types';
 import Order from '../components/Order';
+import ResultOrder from '../components/ResultOrder';
 import cutleryImg from '../assets/fork.png';
 import drinkImg from '../assets/cup.png';
 import './App.css';
@@ -78,27 +79,12 @@ function App() {
           <h1 className="mb-5 fs-3"> Order details: </h1>
           <div className="mt-2 d-flex flex-column gap-2">
             {positions.filter(position => position.count !== 0).map(position => (
-              <div key={position.item.id} className="card p-2">
-                <div className="card-body">
-                  <div className="row align-items-center">
-                    <div className="col-auto flex-grow-1">
-                      {position.item.name}
-                    </div>
-                    <div className="col-auto">
-                      X {position.count}
-                    </div>
-                    <div className="col-auto">
-                      {position.item.price} KGS
-                    </div>
-                    <div className="col-auto">
-                      <button onClick={() => onChange(position.item.id,-1)}
-                        className="btn btn-danger"
-                      >
-                        X </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <ResultOrder id={position.item.id}
+                           name={position.item.name}
+                           price={position.item.price}
+                           count={position.count}
+                           onChange={onChange}
+              />
             ))}
           </div>
           <div className="col-auto mt-3 fw-bold">
@@ -111,21 +97,3 @@ function App() {
 }
 
 export default App;
-
-// <button className="btn btn-white" onClick={() => onChange(item.id,1)}>
-//   <div key={item.id} className="card p-2">
-//     <div className="card-body">
-//       <div className="row align-items-center">
-//         <div className="col-auto">
-//           <img src={imgOrder(item.id)} width='50px' height='50px' alt="Order image" />
-//         </div>
-//         <div className="col-auto flex-grow-1">
-//           {item.name}
-//         </div>
-//         <div className="col-auto">
-//           {item.price} KGS
-//         </div>
-//       </div>
-//     </div>
-//   </div>
-// </button>
